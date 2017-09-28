@@ -18,6 +18,10 @@ export default class ActionsButton extends Component {
     this.setState({showModal: true});
   } 
 
+  handleAmount = value => {
+    this.props.onNewAmount(value);
+  }
+
   render() {
     return (
       <View style={{flex:2}}>
@@ -29,7 +33,7 @@ export default class ActionsButton extends Component {
             <Icon name="logo-usd" style={styles.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>
-        <ExpensesModal show={this.state.showModal} />
+        <ExpensesModal show={this.state.showModal} onNewAmount={this.handleAmount} />
       </View>
     );
   }

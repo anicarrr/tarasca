@@ -5,12 +5,22 @@ import { TextInputMask } from 'react-native-masked-text';
 
 export default class ExpensesModal extends Component {
   state = {
-    isModalVisible: false
+    isModalVisible: false,
+    amount: 0
+  }
+
+  checkIsNotEmpty = (prev, next) => {
+    if(this.state.amount !== 0){
+      var rawAmount = this.refs['rawAmount'].getRawValue();
+      this.setState({ isModalVisible: false }, () => {
+        this.props.onNewAmount(rawAmount);
+      });
+    }
   }
 
   _showModal = () => this.setState({ isModalVisible: true })
 
-  _renderButton = (text, onPress) => (
+  _renderButton = (onPress) => (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.button}>
         <Text>agregar</Text>
@@ -18,21 +28,30 @@ export default class ExpensesModal extends Component {
     </TouchableOpacity>
   );
 
+  handleValueChange = (value) => {
+    this.setState({ amount: value });
+  }
+
   _renderModalContent = () => (
     <View style={styles.modalContent}>
       <TextInputMask
-        ref={'moneyInput'}
+        ref="rawAmount"
         type={'money'}
         style={styles.moneyInput}
         options={{ unit: '$', zeroCents: true, precision: 0}}
         placeholder="$0.00"
+        onChangeText={this.handleValueChange}
+        value={this.state.amount}
       />
-      {this._renderButton('Close', () => this.setState({ isModalVisible: false }))}
+      {this._renderButton(this.checkIsNotEmpty)}
     </View>
   );
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ isModalVisible: true });
+    this.setState({ 
+      isModalVisible: nextProps.show,
+      amount: 0
+    });
   }
 
   render () {

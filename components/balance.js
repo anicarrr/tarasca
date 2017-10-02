@@ -14,7 +14,7 @@ export default class Balance extends Component {
   componentWillReceiveProps(nextProps) {
     this.setState(prev => {
       return { 
-        balance: prev.balance - nextProps.amount
+        balance: prev.balance + nextProps.amount
       };
     });
   }
@@ -26,7 +26,7 @@ export default class Balance extends Component {
     const balanceAbs = Math.abs(balance);
 
     return (
-      <View style={{flex:2}}>
+      <View style={styles.content}>
         <Text style={[styles.balance, { color }]}>
           {moneySign}{balanceAbs}
         </Text>
@@ -36,10 +36,13 @@ export default class Balance extends Component {
 }
 
 const styles = StyleSheet.create({
-  balance: {
-    fontSize: 60,
-    justifyContent: 'center',
+  content: {
+    flex: 2,
+    marginTop: 20,
     alignItems: 'center'
+  },
+  balance: {
+    fontSize: 60
   },
 });
 

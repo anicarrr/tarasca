@@ -11,7 +11,7 @@ import {
   Text,
   View
 } from 'react-native';
-import ActionsButton from './components/actionsButton';
+import MenuButton from './components/menuButton';
 import Balance from './components/balance';
 
 export default class tarascaap extends Component {
@@ -19,21 +19,27 @@ export default class tarascaap extends Component {
     amount: 0
   }
   
-  handleAmount = value => {
-    this.setState({amount: value})
+  handleOnSubmit = form => {
+    this.setState({
+      amount: form.amount
+    })
   }
 
   render() {
     return (
-      <View style={{flex:1, backgroundColor: '#f3f3f3'}}>
+      <View style={styles.content}>
         <Balance amount={this.state.amount} />
-        <ActionsButton onNewAmount={this.handleAmount} />
+        <MenuButton onSubmit={this.handleOnSubmit} />
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  content: {
+    flex:1, 
+    backgroundColor: '#f3f3f3'
+  },
   actionButtonIcon: {
     fontSize: 20,
     height: 22,

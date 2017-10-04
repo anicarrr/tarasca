@@ -12,7 +12,7 @@ import {
   View
 } from 'react-native';
 
-export default class tarascaap extends Component {
+export default class tarasca extends Component {
   render() {
     return (
       <View style={styles.container}>
@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('tarascaap', () => tarascaap);
+AppRegistry.registerComponent('tarasca', () => tarasca);

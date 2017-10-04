@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -14,7 +8,7 @@ import {
 import MenuButton from './components/menuButton';
 import Balance from './components/balance';
 
-export default class tarascaap extends Component {
+export default class tarasca extends Component {
   state = {
     amount: 0
   }
@@ -47,4 +41,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('tarascaap', () => tarascaap);
+AppRegistry.registerComponent('tarasca', () => tarasca);

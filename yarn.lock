@@ -3443,6 +3443,12 @@ react-native-animatable@^1.2.3:
   dependencies:
     prop-types "^15.5.10"
 
+react-native-autocomplete-input@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/react-native-autocomplete-input/-/react-native-autocomplete-input-3.4.0.tgz#1e3f2457a849b1de4abb7561b750594038468fcd"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-masked-text@^1.6.2:
   version "1.6.2"
   resolved "https://registry.yarnpkg.com/react-native-masked-text/-/react-native-masked-text-1.6.2.tgz#e459749dbe2a492ac0e0832db8014ac55358d63a"

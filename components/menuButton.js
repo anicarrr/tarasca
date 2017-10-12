@@ -34,13 +34,13 @@ export default class MenuButton extends Component {
     return (
       <View style={{flex:3}}>
         <ActionButton buttonColor="rgba(231,76,60,1)">
-          <ActionButton.Item buttonColor='#3498db' title="Historial" onPress={() => {}}>
+          <ActionButton.Item buttonColor='#3498db' title="History" onPress={() => {}}>
             <Icon name="md-paper" style={styles.actionButtonIcon} />
           </ActionButton.Item>
-          <ActionButton.Item buttonColor='#3498db' title="Agregar saldo" onPress={this.activeCreditModal}>
+          <ActionButton.Item buttonColor='#3498db' title="Add credit" onPress={this.activeCreditModal}>
             <Icon name="logo-usd" style={styles.actionButtonIcon} />
           </ActionButton.Item>
-          <ActionButton.Item buttonColor='#9b59b6' title="Agregar gasto" onPress={this.activeExpensesModal}>
+          <ActionButton.Item buttonColor='#9b59b6' title="add expense" onPress={this.activeExpensesModal}>
             <Icon name="logo-usd" style={styles.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>

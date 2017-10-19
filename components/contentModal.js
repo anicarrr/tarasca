@@ -12,41 +12,40 @@ export default class ContentModal extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({ 
-      isModalVisible: true,
-      contentToShow: nextProps.contentToShow
+      isModalVisible: true
     });
   }
 
-  _renderModalContent() {
-    switch (this.state.contentToShow) {
-      case 'credit':
-        return <CreditForm onSubmit={this.handleSubmit} /> 
-      
-      case 'expenses':
-        return <ExpensesForm onSubmit={this.handleSubmit} />
-
-      default: 
-        return ''
-    }
-  }
-
-  hideModal = (callback) => { this.setState({ isModalVisible: false }, callback) };
+  hideModal = () => { 
+    return new Promise(resolve => {
+      this.setState({ isModalVisible: false }, () => resolve())
+    })
+  };
 
   handleSubmit = (form) => {
-    this.hideModal(() => {
+    this.hideModal().then(() => {
       this.props.onSubmit(form);
     });
   }
 
   render () {
+    const { contentToShow } = this.props;
+    const { isModalVisible } = this.state;
     return (
       <View>
         <Modal 
-          isVisible={this.state.isModalVisible}
+          isVisible={isModalVisible}
           animationIn={'zoomInDown'}
           animationOut={'zoomOutUp'}
+          onBackdropPress={this.hideModal}
         >
-          {this._renderModalContent()}
+          {
+            contentToShow === 'credit' 
+              ? <CreditForm onSubmit={this.handleSubmit} /> 
+              : 
+            contentToShow === 'expenses' 
+              && <ExpensesForm onSubmit={this.handleSubmit} />
+          }
         </Modal>
       </View>
     )

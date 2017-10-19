@@ -37,7 +37,7 @@ class AutocompleteInput extends Component {
   }
 
   findItem(query) {
-    if (!query) return [];
+    if (!query || query.length === 1) return [];
 
     const { items } = this.state;
     return items.filter(film => this.find(query).in(film.title)).slice(0,1);

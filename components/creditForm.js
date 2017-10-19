@@ -25,7 +25,7 @@ export default class CreditForm extends Component {
       <View style={styles.content}>
         <MoneyInput value={this.state.form.amount} onChange={this.handleOnChange} />
         <ButtonSubmit onPress={this.checkBeforeSubmit}>
-          agregar saldo
+          add credit
         </ButtonSubmit>
       </View>
     )

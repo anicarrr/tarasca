@@ -34,7 +34,7 @@ export default class ExpensesForm extends Component {
         <MoneyInput value={this.state.form.amount} onChange={this.handleOnChange} />
         <AutocompleteInput placeholder="Reason" />
         <ButtonSubmit onPress={this.checkBeforeSubmit}>
-          agregar gasto
+          add expense
         </ButtonSubmit>
       </View>
     )

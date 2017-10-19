@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, AppRegistry, StyleSheet } from 'react-native';
-import { TextInputMask } from 'react-native-masked-text';
 import ButtonSubmit from './buttonSubmit';
 import MoneyInput from './moneyInput';
 

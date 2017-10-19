@@ -18,6 +18,8 @@ class AutocompleteInput extends Component {
     const items = [
       { title: 'Rocky II' },
       { title: 'Rocky III' },
+      { title: 'Rocky IV' },
+      { title: 'Rocky V' },
       { title: 'Club de la pelea' },
       { title: 'Moonlight' }
     ];
@@ -29,7 +31,7 @@ class AutocompleteInput extends Component {
     return {
       in: (b) => {
         var source = b.toLowerCase().trim();
-        return source.contains(searchTerm); 
+        return source.includes(searchTerm); 
       }
     }
   }
@@ -38,7 +40,7 @@ class AutocompleteInput extends Component {
     if (!query) return [];
 
     const { items } = this.state;
-    return items.filter(film => this.find(query).in(film.title));
+    return items.filter(film => this.find(query).in(film.title)).slice(0,1);
   }
 
   handleOnChangeText = (text) => {
@@ -94,11 +96,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 0,
     top: 0,
-    zIndex: 0
+    zIndex: 1
   },
   itemText: {
     fontSize: 15,
-    margin: 2
+    margin: 5
   }
 });
 

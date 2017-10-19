@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, AppRegistry, StyleSheet } from 'react-native';
 import ButtonSubmit from './buttonSubmit';
 import MoneyInput from './moneyInput';
+import AutocompleteInput from './autocompleteInput';
 
 export default class ExpensesForm extends Component {
   state = {
@@ -31,6 +32,7 @@ export default class ExpensesForm extends Component {
     return (
       <View style={styles.content}>
         <MoneyInput value={this.state.form.amount} onChange={this.handleOnChange} />
+        <AutocompleteInput placeholder="Reason" />
         <ButtonSubmit onPress={this.checkBeforeSubmit}>
           agregar gasto
         </ButtonSubmit>
@@ -43,6 +45,7 @@ const styles = StyleSheet.create({
   content: {
     backgroundColor: 'white',
     borderColor: 'rgba(0, 0, 0, 0.1)',
+    marginBottom: 25
   }
 });
 

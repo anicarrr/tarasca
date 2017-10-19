@@ -40,7 +40,7 @@ export default class MenuButton extends Component {
           <ActionButton.Item buttonColor='#3498db' title="Add credit" onPress={this.activeCreditModal}>
             <Icon name="logo-usd" style={styles.actionButtonIcon} />
           </ActionButton.Item>
-          <ActionButton.Item buttonColor='#9b59b6' title="add expense" onPress={this.activeExpensesModal}>
+          <ActionButton.Item buttonColor='#9b59b6' title="Add expense" onPress={this.activeExpensesModal}>
             <Icon name="logo-usd" style={styles.actionButtonIcon} />
           </ActionButton.Item>
         </ActionButton>

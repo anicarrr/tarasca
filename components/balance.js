@@ -37,12 +37,12 @@ export default class Balance extends Component {
 
 const styles = StyleSheet.create({
   content: {
-    flex: 2,
-    marginTop: 20,
-    alignItems: 'center'
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   balance: {
-    fontSize: 60
+    fontSize: 60,
   },
 });
 

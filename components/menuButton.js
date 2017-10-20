@@ -32,7 +32,7 @@ export default class MenuButton extends Component {
 
   render() {
     return (
-      <View style={{flex:3}}>
+      <View style={styles.content}>
         <ActionButton buttonColor="rgba(231,76,60,1)">
           <ActionButton.Item buttonColor='#3498db' title="History" onPress={() => {}}>
             <Icon name="md-paper" style={styles.actionButtonIcon} />
@@ -51,10 +51,17 @@ export default class MenuButton extends Component {
 }
 
 const styles = StyleSheet.create({
+  content: {
+    left: '31%',
+    position: 'absolute',
+    top: '43%',
+    height: 350,
+    width: 250
+  },
   actionButtonIcon: {
     fontSize: 20,
     height: 22,
-    color: 'white',
+    color: 'white'
   },
 });
 

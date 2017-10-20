@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import MenuButton from './components/menuButton';
 import Balance from './components/balance';
+import Movements from './components/movements';
 
 export default class tarasca extends Component {
   state = {
@@ -23,6 +24,7 @@ export default class tarasca extends Component {
     return (
       <View style={styles.content}>
         <Balance amount={this.state.amount} />
+        <Movements />
         <MenuButton onSubmit={this.handleOnSubmit} />
       </View>
     );
@@ -33,12 +35,7 @@ const styles = StyleSheet.create({
   content: {
     flex:1, 
     backgroundColor: '#f3f3f3'
-  },
-  actionButtonIcon: {
-    fontSize: 20,
-    height: 22,
-    color: 'white',
-  },
+  }
 });
 
 AppRegistry.registerComponent('tarasca', () => tarasca);

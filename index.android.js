@@ -12,14 +12,17 @@ import ContentModal from './components/contentModal';
 
 export default class tarasca extends Component {
   state = {
-    amount: 0,
+    form: {
+      amount: 0,
+      id: 0,
+      date: '',
+      reason: ''
+    },
     contentToShow: ''
   }
   
   handleSubmit = form => {
-    this.setState({
-      amount: form.amount
-    })
+    this.setState({ form });
   }
 
   handleActiveModal = showThisOne => {
@@ -30,21 +33,22 @@ export default class tarasca extends Component {
 
   componentDidUpdate() {
     this.setState({
-      amount: 0,
+      form: { amount: 0 },
       contentToShow: ''
     });
   }
 
   shouldComponentUpdate(nextProps, nextState){
-    return nextState.contentToShow || nextState.amount !== 0;
+    return nextState.contentToShow || nextState.form.amount !== 0;
   }
 
   render() {
+    const { form, contentToShow } = this.state;
     return (
       <View style={styles.content}>
-        <Balance amount={this.state.amount} />
-        <Movements />
-        <ContentModal contentToShow={this.state.contentToShow} onSubmit={this.handleSubmit} />
+        <Balance amount={form.amount} />
+        <Movements movement={form} />
+        <ContentModal contentToShow={contentToShow} onSubmit={this.handleSubmit} />
         <MenuButton onActiveModal={this.handleActiveModal} />
       </View>
     );

@@ -7,35 +7,36 @@ import {
   FlatList
 } from 'react-native';
 
-class Movements extends React.PureComponent  {
+class Movements extends Component  {
   state = {
     list: []
-  }
+  };
 
   componentDidMount() {
    
   }
 
-  getList = () => {
-    return [
-      {id: 1, reason: 'Uno', date: '10/12/2017', amount: '500'}, 
-      {id: 2, reason: 'Dos', date: '10/12/2017', amount: '-500'},
-      {id: 3, reason: 'Tres', date: '10/12/2017', amount: '500'},
-      {id: 4, reason: 'Cuatro', date: '10/12/2017', amount: '-500'},
-      {id: 5, reason: 'Cinco', date: '10/12/2017', amount: '500'},
-      {id: 6, reason: 'Seis', date: '10/12/2017', amount: '500'},
-      {id: 7, reason: 'Siete', date: '10/12/2017', amount: '500'},
-      {id: 8, reason: 'Ocho', date: '10/12/2017', amount: '500'},
-      {id: 9, reason: 'Nueve', date: '10/12/2017', amount: '500'},
-      {id: 10, reason: 'Diez', date: '10/12/2017', amount: '500'}
-    ];
+  componentWillReceiveProps(nextProps)  {
+    if (!nextProps.movement.id) return;
+    
+    var listMovements = [...this.state.list];
+    listMovements.unshift(nextProps.movement);
+
+    this.setState({
+      list: listMovements
+    });
   }
 
-  _keyExtractor = (item, index) => item.id;
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps.movement.id !== undefined && 
+           nextProps.movement.id !== 0;
+  }
+
+  _keyExtractor = (item, index) => index;
 
   _renderItem = data => {
     const { item } = data; 
-    const backgroundColor = item.id % 2 ? '#cce0e3' : '#97cfd8'; 
+    const backgroundColor = data.index % 2 ? '#cce0e3' : '#97cfd8'; 
     const color = item.amount >= 0 ? 'green' : 'red';
     const moneySign = item.amount >= 0 ? '$' : '-$';
     const amount = Math.abs(item.amount);
@@ -52,7 +53,7 @@ class Movements extends React.PureComponent  {
     return (
       <View style={styles.container}>
         <FlatList
-          data={this.getList()}
+          data={this.state.list}
           numColumns={1}
           keyExtractor={this._keyExtractor}
           renderItem={this._renderItem}

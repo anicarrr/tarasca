@@ -2,28 +2,33 @@ import React, { Component } from 'react';
 import { View, AppRegistry, StyleSheet } from 'react-native';
 import ButtonSubmit from './buttonSubmit';
 import MoneyInput from './moneyInput';
+import { getDateNow } from '../utils/utils';
 
 export default class CreditForm extends Component {
-  state = {
-    form: {
-      amount: 0
-    }
+  form = {
+    amount: 0,
+    id: '',
+    date: '',
+    reason: ''
   }
 
   handleOnChange = (value) => {
-    this.setState({ form: { amount: value } });
+    this.form.amount = value;
   }
 
   checkBeforeSubmit = () => {
-    const { form } = this.state;
+    const { form } = this;
     if (form.amount === 0) return;
+    form.date = getDateNow();
+    form.reason = 'Credit'; 
+    form.id = Math.random().toString(36).substring(7);
     this.props.onSubmit(form);
   }
 
   render () {
     return (
       <View style={styles.content}>
-        <MoneyInput value={this.state.form.amount} onChange={this.handleOnChange} />
+        <MoneyInput value={this.form.amount} onChange={this.handleOnChange} />
         <ButtonSubmit onPress={this.checkBeforeSubmit}>
           add credit
         </ButtonSubmit>

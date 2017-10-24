@@ -47,14 +47,11 @@ class AutocompleteInput extends Component {
     this.setState({ 
       query: text,
       hideResults: false 
-    });
+    }, this.emitTextValue(text));
   }
 
-  handleOnPress = (selectedValue) => {
-    this.setState({ 
-      query: selectedValue,
-      hideResults: true 
-    });
+  emitTextValue = (value) => {
+    this.props.onChange(value);
   }
 
   render() {
@@ -72,7 +69,7 @@ class AutocompleteInput extends Component {
           onChangeText={this.handleOnChangeText}
           placeholder={placeholder}
           renderItem={({ title }) => (
-            <TouchableOpacity onPress={() => this.setState({query: title, hideResults: true})}>
+            <TouchableOpacity onPress={() => this.setState({query: title, hideResults: true}, this.emitTextValue(title))}>
               <Text style={styles.itemText}>
                 {title}
               </Text>

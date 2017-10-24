@@ -3,36 +3,45 @@ import { View, AppRegistry, StyleSheet } from 'react-native';
 import ButtonSubmit from './buttonSubmit';
 import MoneyInput from './moneyInput';
 import AutocompleteInput from './autocompleteInput';
+import { getDateNow } from '../utils/utils';
 
 export default class ExpensesForm extends Component {
-  state = {
-    form: {
-      amount: 0
-    }
+  form = {
+    amount: 0,
+    id: '',
+    date: '',
+    reason: ''
   }
 
-  handleOnChange = (value) => {
-    this.setState({ form: { amount: value } });
+  handleMoneyOnChange = (value) => {
+    this.form.amount = value;
+  }
+
+  handleAutocompleteOnChange = (value) => {
+    this.form.reason = value;
   }
 
   checkBeforeSubmit = () => {
-    const { form } = this.state;
+    const { form } = this;
     if (form.amount === 0) return;
-    const amountToNegative = -Math.abs(form.amount);
-    this.setState({ form: { amount: amountToNegative } }, () => {
-      this.props.onSubmit(this.state.form);
-    });
+
+    form.date = getDateNow();
+    form.reason = form.reason; 
+    form.id = Math.random().toString(36).substring(7);
+    form.amount = -Math.abs(form.amount);
+    
+    this.props.onSubmit(form);
   }
 
   shouldComponentUpdate() {
-    return this.state.form.amount > 0;
+    return this.form.amount > 0;
   }
 
   render () {
     return (
       <View style={styles.content}>
-        <MoneyInput value={this.state.form.amount} onChange={this.handleOnChange} />
-        <AutocompleteInput placeholder="Reason" />
+        <MoneyInput value={this.form.amount} onChange={this.handleMoneyOnChange} />
+        <AutocompleteInput placeholder="Reason" onChange={this.handleAutocompleteOnChange} />
         <ButtonSubmit onPress={this.checkBeforeSubmit}>
           add expense
         </ButtonSubmit>

@@ -23,7 +23,7 @@ class AutocompleteInput extends Component {
       { title: 'Club de la pelea' },
       { title: 'Moonlight' }
     ];
-      this.setState({ items });
+    this.setState({ items });
   }
 
   find(a) {

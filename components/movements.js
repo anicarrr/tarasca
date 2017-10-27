@@ -6,6 +6,7 @@ import {
   View,
   FlatList
 } from 'react-native';
+import Money from './money';
 
 const Header = () => (
   <View style={styles.headerContainer}>
@@ -19,10 +20,6 @@ class Movements extends Component  {
   state = {
     list: []
   };
-
-  componentDidMount() {
-   
-  }
 
   componentWillReceiveProps(nextProps)  {
     if (!nextProps.movement.id) return;
@@ -45,14 +42,11 @@ class Movements extends Component  {
   _renderItem = data => {
     const { item } = data; 
     const backgroundColor = data.index % 2 ? '#cce0e3' : '#97cfd8'; 
-    const color = item.amount >= 0 ? 'green' : 'red';
-    const moneySign = item.amount >= 0 ? '$' : '-$';
-    const amount = Math.abs(item.amount);
     return (
       <View style={[styles.itemContainer, { backgroundColor }]}>
         <Text style={styles.itemDate}>{item.date}</Text>
         <Text style={styles.itemReason}>{item.reason}</Text>
-        <Text style={[styles.itemAmount, { color }]}>{moneySign}{amount}</Text>
+        <Money style={itemAmountStyles}>{item.amount}</Money>
       </View>
     );
   };
@@ -107,7 +101,7 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     backgroundColor: 'white',
-    borderBottomWidth: 0.3,
+    borderBottomWidth: 0.5,
     borderColor: 'black',
     ...listContainer
   },
@@ -126,11 +120,13 @@ const styles = StyleSheet.create({
     ...itemStyle
   },
   itemAmount: {
-    flex: 1.4,
+    flex: 1.5,
     textAlign: 'right',
     marginRight: 11,
     ...itemStyle
   },
 });
+
+const itemAmountStyles = StyleSheet.flatten(styles.itemAmount);
 
 export default Movements;

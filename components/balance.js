@@ -5,6 +5,7 @@ import {
   Text,
   View
 } from 'react-native';
+import Money from './money';
 
 export default class Balance extends Component {
   state = {
@@ -20,16 +21,9 @@ export default class Balance extends Component {
   }
 
   render() {
-    const { balance } = this.state;
-    const color = balance >= 0 ? 'green' : 'red';
-    const moneySign = balance >= 0 ? '$' : '-$';
-    const balanceAbs = Math.abs(balance);
-
     return (
       <View style={styles.content}>
-        <Text style={[styles.balance, { color }]}>
-          {moneySign}{balanceAbs}
-        </Text>
+        <Money fontSize={60}>{this.state.balance}</Money>
       </View>
     );
   }
@@ -40,10 +34,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
-  },
-  balance: {
-    fontSize: 60,
-  },
+  }
 });
 
 AppRegistry.registerComponent('Balance', () => Balance);

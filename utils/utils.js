@@ -6,3 +6,7 @@ export function getDateNow() {
 
 	return `${day}/${month}/${year}`;
 }
+
+export function thousandsSeparator(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
